@@ -1,5 +1,5 @@
 SUBDIR+= 	pwdguess
-#SUBDIR+= 	pwdpolicies
+SUBDIR+= 	pwdpolicies
 
 INCLUDE_MAKEFILES=makefiles
 include ${INCLUDE_MAKEFILES}/subdir.mk
