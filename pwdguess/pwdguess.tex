@@ -1,0 +1,28 @@
+% $Id$
+\documentclass[a4paper]{llncs}
+\usepackage[utf8]{inputenc}
+\usepackage[swedish,english]{babel}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage[natbib,style=alphabetic,maxbibnames=99]{biblatex}
+\addbibresource{pwdguess.bib}
+
+\usepackage{listings}
+\lstset{%
+  basicstyle=\ttfamily\small,
+  numberstyle=\small,
+  numbers=left,
+  tabsize=2,
+  captionpos=b,
+  breaklines=true,
+  %breakatwhitespace=true
+}
+
+\usepackage{acronym}
+\newacro{APT}{Advanced Persistent Threat}
+\newacro{JtR}{John the Ripper}
+
+\begin{document}
+\input{pwdguess-contents.tex}
+\end{document}

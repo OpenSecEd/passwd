@@ -1,0 +1,1 @@
+user1:$2a$06$0dwWHP6Yqgr6Kd20JJT19uzSDz4yk8pNEsn7pVwwtnvgngcg5e5G6:1011:10::/home/user1:/bin/ksh
