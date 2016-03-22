@@ -1,13 +1,13 @@
 \title{%
-  Password Cracking and Social Engineering
+  Lab: Password Cracking and Social Engineering
 }
 \subtitle{%
-  A lab on breaking authentication mechanisms
+  Breaking authentication mechanisms
 }
 \author{%
   Daniel Bosk \and Lennart Franked
 }
-\institute{
+\institute{%
   Department of Information and Communication Systems\\
   Mid Sweden University, SE-851\,70 Sundsvall
 }
@@ -41,10 +41,9 @@ The intended learning outcome is that by completion you should:
 
 The next section covers what you must read before you understand this 
 assignment and how to do the work.
-Section \ref{sec:tasks} covers the work to be done, i.e.~how you should learn 
-this.
-Section \ref{sec:exam} covers how it will be examined, i.e.~how you show that 
-you have fulfilled the intended learning outcomes given above.
+\Cref{sec:tasks} covers the work to be done, i.e.~how you should learn this.
+\Cref{sec:exam} covers how it will be examined, i.e.~how you show that you have 
+fulfilled the intended learning outcomes given above.
 
 
 \section{Theory}
@@ -67,7 +66,7 @@ You are now going to reflect on the strength of different types of passwords.
 Use the theory to properly found your reasoning.
 Start by comparing how long a password consisting of lower- and upper-case 
 letters, numbers and special characters must be to have the same strength as 
-a password consisting of three and four randomly choses words, respectively.
+a password consisting of three and four randomly chooses words, respectively.
 Then continue by answering the following questions:
 \begin{itemize}
   \item What happens if the randomly chosen words are not that randomly chosen, 
@@ -92,7 +91,7 @@ However, you are free to use any program to solve this.
 
 For a UNIX-like operating system the password hashes with corresponding salts 
 are stored in the file \enquote{/etc/master.passwd} on BSD-based systems such 
-as OpenBSD and FreeBSD.
+as OpenBSD and FreeBSD\@.
 In the case of Linux-based systems such as Ubuntu, the file used is 
 \enquote{/etc/shadow}.
 You need privileges (root) to read this file.
@@ -212,7 +211,7 @@ input.
 You can read more about this in the manual by typing \enquote{man 1 john} in 
 the terminal.
 
-You will find links to different wordlists to use in the following URL:
+You will find links to different wordlists to use in the following URL\@:
 \begin{center}
   \url{http://sectools.org/tag/crackers/}.
 \end{center}
@@ -297,4 +296,4 @@ You can find its source code downloadable from the URL
 %\lstinputlisting{pwdstream.py}
 
 
-\printbibliography
+\printbibliography{}
