@@ -1,6 +1,7 @@
 # $Id$
 
-FILES=		pwdpolicies.tex aims.tex literature.tex pwdpolicies.bib
+FILES+=		pwdpolicies.tex aims.tex literature.tex pwdpolicies.bib
+FILES+=		contents.tex
 
 USE_LATEXMK= 	yes
 USE_BIBLATEX= 	yes
