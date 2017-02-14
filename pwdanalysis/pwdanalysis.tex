@@ -1,0 +1,477 @@
+% $Id$
+\documentclass[a4paper]{article}
+\usepackage[swedish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\usepackage{prettyref,varioref}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage[today,nofancy]{svninfo}
+\usepackage[natbib=true,style=numeric-comp,sorting=none]{biblatex}
+\addbibresource{literature}
+\usepackage[prettyref,varioref]{miunmisc}
+
+\svnInfo $Id$
+
+\title{Grundläggande lösenordsanalys}
+\author{Daniel Bosk\footnote{%
+    Detta verk är tillgängliggjort under licensen Creative Commons 
+    Erkännande-DelaLika 2.5 Sverige (CC BY-SA 2.5 SE).
+    För att se en sammanfattning och kopia av licenstexten besök URL 
+    \url{http://creativecommons.org/licenses/by-sa/2.5/se/}.
+  }
+}
+\date{\svnId}
+
+\newtheorem{theorem}{Sats}
+\newrefformat{thm}{Sats \ref{#1}}
+\newtheorem{proposition}{Proposition}
+\newrefformat{prop}{Proposition \ref{#1}}
+\newtheorem{lemma}{Lemma}
+\newrefformat{lem}{Lemma \ref{#1}}
+\newtheorem{corollary}{Korollarium}
+\newrefformat{cor}{Korollarium \ref{#1}}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newrefformat{def}{Definition \ref{#1}}
+\newtheorem{example}{Exempel}
+\newrefformat{ex}{Exempel \ref{#1}}
+\newtheorem{exercise}{Övning}
+\newrefformat{xrc}{Övning \ref{#1}}
+\theoremstyle{remark}
+\newtheorem{remark}{Anmärkning}
+\newrefformat{remark}{Anmärkning \ref{#1}}
+\renewcommand{\qedsymbol}{Q.E.D.}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+%\section{Om val}
+%\noindent
+%Vi stöter ofta på val av olika slag.
+%I detta papper ska vi reflektera över antalet möjliga utfall som kan uppstå
+%genom att olika val kombineras samman.
+%
+%Vi inleder med definitioner av de begrepp vi kommer att använda.
+%
+%\begin{definition}\label{def:Val}
+%	Med \emph{val} menas att det finns \(n \geq 1\) antal distinkta alternativ
+%	att välja mellan, av dessa alternativ måste ett och endast ett väljas.
+%\end{definition}
+%
+%\begin{definition}\label{def:Utfall}
+%	Ett \emph{utfall} är ett resultat av att ett val har genomförts.
+%	Ett val med \(n\) alternativ får \(n\) utfall.
+%\end{definition}
+%
+%Vi ska fortsätta med ett väldigt enkelt lemma\footnote{%
+%	Det vill säga en hjälpsats.
+%} om förhållandet mellan valets antal alternativ och det möjliga antalet utfall.
+%Även om detta lemma anses självklart ska vi ändå inkludera ett bevis för
+%det.
+%För att bevisa det behöver vi dock Dirichlets lådprincip, vilken visas härnäst.
+%
+%\begin{theorem}[Dirichlets lådprincip]
+%	Låt \(k\) objekt fördelas över \(n\) lådor.
+%	Om \(k > n\), då måste någon låda innehålla fler än ett objekt.
+%\end{theorem}
+%
+%\begin{proof}
+%	Vi bevisar satsens kontrapositiva utsaga\footnote{%
+%		Betrakta utsagan \emph{Om vi är i Sundsvall, då är vi i Sverige}.
+%		Dess kontrapositiva utsaga är \emph{Om vi \emph{inte} är i Sverige, då
+%		är vi \emph{inte} i Sundsvall}.
+%		En utsagas kontrapositiva utsaga är logiskt ekvivalent med utsagan
+%		själv.
+%		Det vill säga om den ena är sann, då är den andra också det.
+%	}, nämligen om ingen låda innehåller fler än ett objekt då måste
+%	\(k \leq n\).
+%
+%	Vi antar att ingen av de \(n\) lådorna innehåller fler än ett objekt.
+%	Låt \(m_i\) beteckna antalet objekt i låda \(i\), enligt vårt antagande har
+%	vi då att \(m_i \leq 1\) för alla \(1 \leq i \leq n\).
+%	Om vi summerar antalet objekt får vi \[k = \sum_{i=1}^n m_i = m_1 + m_2 +
+%	\cdots + m_n \leq \underbrace{1 + 1 + \cdots + 1}_n = n.\]
+%	Således är \(k \leq n\) och vi har då visat satsen.
+%\end{proof}
+%
+%Då kan vi ta oss ann vårt första lemma.
+%
+%\begin{lemma}\label{lem:AntalUtfall}
+%	Ett val från \(n\) alternativ har \(n\) möjliga utfall.
+%\end{lemma}
+%
+%\begin{proof}
+%	För varje alternativ behövs åtminstone ett utfall.
+%	Om vi har \(n\) alternativ och antar att vi får \(n+1\) utfall,
+%	då måste det enligt Dirichlets lådprincip vara något alternativ som får
+%	fler än ett utfall.
+%	Men om ett och samma alternativ har flera utfall, då måste dessa utfall
+%	vara samma utfall.
+%	Detta är en motsägelse\footnote{%
+%		En utsaga \emph{Om A då B} är logiskt ekvivalent med utsagan \emph{Om A
+%		och icke B då motsägelse}.
+%		Vi antog att vi hade \(n\) alternativs och att detta ledde till fler än
+%		\(n\) utfall.
+%		Detta ledde till en motsägelse, således är det sant att 
+%	} och därför måste vi ha exakt \(n\) utfall.
+%\end{proof}
+%
+%För fullständighet inkluderas även ett exempel för att illustrera begreppen.
+%
+%\begin{example}\label{ex:Fikabrod}
+%	Du ska välja fikabröd till eftermiddagsfikat.
+%	De alternativ du har att välja mellan är en nybakad bulle, en torr kaka och
+%	att inte ta något fikabröd.
+%	Notera att välja \emph{ingenting} utgör ett alternativ, det går alltså inte
+%	att avstå från ett val.
+%
+%	Valet av fikabröd har tre alternativ, det finns
+%	%enligt \prettyref{lem:AntalUtfall}
+%	således tre möjliga utfall.
+%	Ett utfall är att vi väljer bullen, ett annat att vi väljer kakan och det
+%	sista att vi väljer att inte ta något fikabröd.
+%\end{example}
+%
+%
+%
+%\subsection{Att välja bland val}
+%\noindent
+%Då är det dags att utöka våra möjligheter att välja genom att kombinera flera
+%val till ett sammansatt val.
+%
+%\begin{definition}
+%	När ett val ska göras följt efter ett annat säger vi att vi har ett
+%	\emph{sammansatt val}.
+%	Ett sammansatt val kan ibland kallas för val.
+%	Varje ingående val kallas för ett \emph{delval}.
+%\end{definition}
+%
+%\begin{example}
+%	Det är dags för eftermiddagsfika igen.
+%	Du ska först välja om du ska dricka kaffe, te eller vatten.
+%	(Att inte välja någonting är inte ett alternativ i detta val, detta är ett
+%	rent teoretiskt val eftersom att rent praktiskt finns ju alltid
+%	alternativet att inte fika alls.)
+%	Därefter ska du välja fikabröd enligt \prettyref{ex:Fikabrod}.
+%	Då har vi ett sammansatt val bestående av två delval, ett för dryck och ett
+%	för fikabröd.
+%\end{example}
+%
+%Det är nu intressant att veta hur många möjliga utfall som ett sådant val
+%möjligen kan ha.
+%Detta sammanfattas i följande sats.
+%
+%\begin{theorem}[Multiplikationsprincipen]\label{thm:Multiplikationsprincipen}
+%	Ett sammansatt val av \(m\) antal delval, där delval \(i\) har \(n_i\)
+%	antal alternativ,
+%	har \(n_1\cdot n_2\cdots n_m\) antal möjliga utfall.
+%\end{theorem}
+%
+%\begin{proof}
+%	Låt oss börja med att titta på det sista delvalet, val \(m\).
+%	Detta val har \(n_m\) alternativ och således \(n_m\) utfall.
+%	%enligt \prettyref{lem:AntalUtfall}.
+%	Vi går vidare till valet innan, det vill säga val \(m-1\).
+%	Detta val har \(n_{m-1}\) möjliga utfall.
+%	För varje utfall av detta val kan vi få \(n_m\) utfall i val \(m\).
+%	Då har vi alltså tillsammans
+%	\begin{equation}\label{eq:MultprincipTvaVal}
+%		\sum_{k=1}^{n_{m-1}} n_m = \underbrace{n_m + n_m + \cdots
+%		n_m}_{n_{m-1}} = n_{m-1}\cdot n_m.
+%	\end{equation}
+%	För varje utfall av delval \(m-2\) kan vi få antalet utfall från
+%	\prettyref{eq:MultprincipTvaVal}.
+%	Det vill säga
+%	\begin{equation}
+%		\sum_{k=1}^{n_{m-2}} n_{m-1}\cdot n_m = n_{m-2}\cdot n_{m-1} \cdot n_m.
+%	\end{equation}
+%	Vi fortsätter på detta vis tills vi når det första valet då vi får
+%	\begin{equation}
+%		\sum_{k=1}^{n_1} n_2\cdot n_3\cdots n_{m-2}\cdot n_{m-1}\cdot n_m
+%			= n_1\cdot n_2\cdots n_m,
+%	\end{equation}
+%	vilket visar satsen.
+%\end{proof}
+%
+%Från \prettyref{thm:Multiplikationsprincipen} följer direkt ett enkelt resultat
+%som vi ger i detta korollarium\footnote{%
+%	Det vill säga en följdsats.
+%}.
+%
+%\begin{corollary}\label{cor:SammansattValKonstAlternativ}
+%	Ett sammansatt val av \(m\) antal delval där varje delval har \(n\)
+%	alternativ, har \(n^m\) antal möjliga utfall.
+%\end{corollary}
+%
+%\begin{proof}
+%	Om vi har ett sammansatt val av \(m\) antal delval, där delval
+%	\(i\) har \(n_i\) alternativ.
+%	Då har vi enligt \prettyref{thm:Multiplikationsprincipen} att det totala
+%	utfallet är \(n_1\cdot n_2\cdots n_m\).
+%	Men eftersom att alla val hade samma antal alternativ, nämligen \(n\), då
+%	får vi att \(n_1\cdot n_2\cdots n_m = n\cdot n\cdots n = n^m\).
+%	Följaktligen får vi \(n^m\) antal möjliga utfall då vi har \(m\) delval där
+%	varje delval har \(n\) alternativ.
+%\end{proof}
+
+
+\section{Val av lösenord och en enkel metrik för lösen\-ords\-styrka}
+\label{sec:choice}
+Vi ska nu titta på hur detta kan användas för att undersöka säkerheten hos
+lösenord.
+Vi inleder med att definiera styrkan hos ett lösenord.
+% XXX use logarithm to have a normalised password metric which is
+% XXX easily comparable.
+% XXX also include an aspect of time for the metric, thus we include the
+% XXX ''change password every three months'' aspect of password policy.
+\begin{definition}\label{def:passwdstrength}
+  \emph{Styrkan} hos ett lösenord av längd \(n\) som väljs från ett alfabet 
+  \(A\) är \(|A|^n,\) det vill säga antalet tecken i vårt alfabet upphöjt till 
+  längden av lösenordet.
+\end{definition}
+Anledningen till att vi väljer \prettyref{def:passwdstrength} är för att detta 
+är antalet möjliga lösenord tillika antalet gissningar som krävs, i värsta 
+fall, för att gissa rätt lösenord.
+Det vill säga, desto fler antal gissningar ett lösenord kräver ju längre tid 
+tar det att gissa och alltså är det säkrare.
+Rent statistiskt sett kommer antalet gissningar som krävs att vara hälften av 
+vårt mått för lösenordsstyrkan eftersom att i medel kommer vi att behöva gå 
+igenom hälften av antalet lösenord.
+
+Det finns flera angreppssätt för att skapa lösenord, exempelvis genom att
+välja en kombination av tecken; då har vi bokstäver, siffror och specialtecken 
+som alfabet.
+Det går också att skapa lösenord genom att slumpmässigt välja några ord som
+kombineras till ett lösenord; i detta fall utgör ordlistan som vi väljer från 
+vårt alfabet, exempelvis Svenska Akademiens ordlista.
+
+Vi börjar med det första fallet, där vi skapar ett lösenord genom att kombinera
+tecken.
+\begin{example}\label{ex:characters}
+  Om vi ska skapa ett lösenord som är fem tecken långt och får innehålla
+  bokstäverna A-Z, både gemener och versaler, siffrorna 0-9 samt specialtecknen 
+  ''!@.\%\&'', då kan vi se att vårt alfabet \[A = \{\text{A}, \text{B}, 
+  \ldots, \text{Z}, \text{a}, \text{b}, \ldots, \text{z}, 0, 1, \ldots, 9, 
+  \text{!}, \text{@}, \text{.}, \text{\%}, \text{\&}\}.\]
+  Vårt alfabet innehåller således \(|A| = 26\cdot 2 + 10 + 5 = 67\) tecken.
+  Styrkan hos ett sådant lösenord är följaktligen \(67^5 = 1350125107.\)
+\end{example}
+
+Nu fortsätter vi med att titta på fallet med att välja lösenord genom att
+slumpmässigt välja några ord.
+\begin{example}\label{ex:words}
+  Vi bestämmer oss för att använda ett lösenord med fyra slumpmässigt valda
+  ord från svenska språket.
+  Detta ger oss ett alfabet \[A = \{\text{apa}, \text{banan}, \text{hej}, 
+  \text{dator}, \ldots\},\]
+  där \(A\) alltså innehåller samtliga ord i Svenska Akademiens ordlista.
+  Enligt Svenska Akademien innehåller ordlistan ungefär 125000 ord \cite{SAOL}, 
+  detta ger oss \(|A| \approx 125000\).
+  Enligt \prettyref{def:passwdstrength} får vi då att styrkan för ett lösenord 
+  av denna typ är
+  \begin{equation}\label{eq:AntalUtfallOrd}
+    |A|^4 \approx 125000^4 = (2^3\cdot 5^6)^4
+      = 2^{12}\cdot 5^{24}
+      = 2^{12}\cdot 25^{12}
+      = (2\cdot 25)^{12} = 50^{12},
+  \end{equation}
+  det vill säga \(244140625000000000000.\)
+\end{example}
+Det senaste fallet kan också ses ur det första fallets perspektiv.
+Om vi tittar på det sista ledet i likheten i \prettyref{eq:AntalUtfallOrd} ser 
+vi direkt att detta skulle exakt motsvara ett alfabet med 50 tecken och en 
+lösenordslängd av 12 tecken.
+
+
+\section{Att angripa lösenord}
+\label{sec:attack}
+Den egentliga skillnaden mellan \prettyref{ex:characters} och 
+\prettyref{ex:words} är de möjliga angreppssätten.
+Exempelvis går det att angripa \prettyref{ex:words} på ett sätt som gör att 
+dess styrka blir större.
+
+För att kunna knäcka ett lösenord måste en gissning kunna testas.
+Detta kan göras på flera sätt.
+Exempelvis kan vi skicka en gissning till inloggningsprogrammet, exempelvis 
+inloggningsgränssnittet för en webbmail.
+Detta tar oftast lång tid och gör systemet i fråga varse om ett angreppsförsök.
+Alternativet är att vi har tillgång till lösenordsdatabasen och kan direkt 
+testa mot den.
+Detta är inte ovanligt 
+\citep[jmf.][]{Cubrilovic2009rhf,Oberheide2010bao,Hunt2011abs,Cluley2012twp}.
+I många system lagras inte själva lösenorden utan ett hashvärde av lösenordet.
+Det vi gör för att testa vår gissning är att vi beräknar hashvärdet för 
+gissningen och jämför detta med det värde som finns i lösenordsdatabasen.
+Notera att eftersom många användare återanvänder sina lösenord i flera system 
+behöver vi inte nödvändigtvis ha lösenordsdatabasen för det system vi är 
+intresserade av att angripa, det räcker med att det finns användare som har 
+konton i båda systemen.
+
+Det finns huvudsakligen tre olika former av lösenordsknäckning.
+Dessa är
+\begin{itemize}
+  \item forcering (brute-force attack),
+  \item ordlistemetoden (dictionary-attack), och
+  \item i övrigt kvalificerade gissningar.
+\end{itemize}
+\foreignlanguage{english}{Social engineering} är egentligen inte en 
+lösenordsknäckningsstrategi utan en generell teknik för att ta sig förbi 
+åtkomstkontroll \citep[s. 18]{Anderson2008sea}, men eftersom att 
+åtkomstkontroll vanligtvis implementeras med lösenordsskydd är den värd att 
+nämna i sammanhanget.
+Varför knäcka lösenordet när du kan be användaren att utföra attacken åt dig?
+
+Forcering innebär att vi låter ett program gå igenom alla möjliga 
+teckenkombinationer i vårt alfabet för att finna lösenordet i fråga.
+Med denna metod är vi garanterade att finna lösenordet, men det kan dock ta 
+väldigt lång tid.
+
+Ordlistemetoden är en effektivare metod, med denna metod använder vi en 
+ordlista med de vanligast förekommande lösenorden och vi låter dessa vara våra 
+gissningar.
+Det är vanligt att lösenordslistor skapas av publicerade hackade databaser, 
+vilket är fallet i analyserna gjorda av 
+\citet{Cubrilovic2009rhf,Oberheide2010bao,Hunt2011abs,Cluley2012twp}.
+Detta ger färre antal gissningar och går således snabbare, men om lösenordet vi 
+försöker att knäcka inte finns med i ordlistan kommer vi aldrig att kunna 
+knäcka det med denna metod.
+
+% XXX add a note on rainbow tables
+%\subsection{En notis om regnbågstabeller}
+%\dots
+
+\subsection{Forcering applicerad på \prettyref{ex:words}}
+
+Låt oss anta att medellängden av orden i Svenska Akademiens ordlista är fem 
+tecken och att dessa tecken enbart är gemener från det svenska språket.
+Det innebär att \prettyref{ex:words} ger oss en lösenordsstyrka på
+\begin{equation}\label{eq:AntalUtfallTecken}
+  29^{5\cdot 4} = 29^{20} = 176994576151109753197786640401.
+\end{equation}
+Med hjälp av logaritmen kan vi enkelt se vilken av dessa som är störst.
+Vi har att \(\log(29^{20}) \approx 29\) medan \(\log(50^{12}) \approx 20.\)
+Att konstruera lösenordet utifrån fyra slumpmässigt valda ord är alltså mycket 
+starkare sett ur detta perspektiv.
+
+Hur spelar denna representation någon roll, vad betyder skillnaden mellan
+\prettyref{eq:AntalUtfallOrd} och \prettyref{eq:AntalUtfallTecken}?
+Det första som bör påpekas är att i \prettyref{eq:AntalUtfallTecken} tas även
+teckenkombinationer som ej är svenska ord med.
+Detta eftersom att valet var att välja fyra uppsättningar av fem tecken.
+Betydelsen av detta är att om vi låter en dator bara slumpa fram 20 bokstäver
+(gemener), då kommer det att resultera i antalet gissningar från
+\prettyref{eq:AntalUtfallTecken}.
+Men det är inte ens säkert att datorn kommer att hitta rätt lösenord om vi 
+råkade välja fyra långa ord som alla var minst sex bokstäver långa.
+Detta är ett problem med denna uppskattning.
+
+Om vi däremot använder Svenska Akademiens ordlista som alfabet när vi tillämpar 
+forcering då kommer antalet gissningar att maximalt bli de från
+\prettyref{eq:AntalUtfallOrd} och vi kommer garanterat att finna lösenordet.
+
+Utifrån detta kan vi konstatera att denna enkla modell är för enkel för att 
+säkert kunna resonera om styrkan hos olika typer av lösenord.
+Vår modell här kan användas för att på ett enkelt sätt översiktligt jämföra 
+styrkan hos olika typer av lösenord.
+Det har däremot forskats fram mer formella modeller, vilket vi ser i nästa 
+avsnitt, som kan användas för att resonera kring starka och svaga lösenord.
+
+% XXX rewrite example from exam on effects of password policies
+\subsection{Effekten av en lösenordspolicy}
+
+Den något enkla lösenordspolicyn som kräver minst åtta tecken med gemener, 
+versaler och siffror -- utan krav på något antal inom de olika kategorierna -- 
+ger \( (26 + 26 + 10)^8 = 62^8 \approx 2^{48} \) antal lösenord.
+Denna policy har inga krav på giltighetstid hos ett lösenord.
+
+Universitetets lösenordspolicy kräver minst åtta tecken.
+Dessa tecken ska vara minst tre gemener, tre versaler och två siffror -- 
+dessutom måste dessa finnas bland de första åtta tecknen i lösenordet.
+Detta ger \( 26^3 26^3 10^2 = 26^6 10^2 \approx 2^{35} \) antal möjliga 
+lösenord.
+Lösenordet måste dessutom bytas var tredje månad, vilket i sin tur ger risken 
+för lösenordssystem där användaren baserar det nya lösenordet på det gamla.
+
+Resultatet av detta är en reduktion av komplexiteten från \( 62^8 \) ned till 
+\( 26^6 10^2 \).
+Detta utgör en relativ minskning av komplexiteten med \( 1-\frac{26^6 
+10^2}{62^8} = 0.99986 \), alltså 99.99 procent.
+Om vi bortser från journalistformuleringen i föregående mening och tar det 
+akademiska perspektivet ser vi att den första policyn är cirka \( 2^{13} = 8192 
+\) gånger mer komplex.
+
+Oavsett vilken av ovan givna policyer som används får användarna (sannolikt) 
+svaga lösenord.
+
+\begin{exercise}
+  Förklara hur dessa lösenordspolicyer kan angripas.
+\end{exercise}
+
+\begin{exercise}
+  Ge ett förslag på en riktigt bra lösenordspolicy.
+  Glöm inte att en lösenordspolicy är meningslös utan tillhörande analys av 
+  den.
+\end{exercise}
+
+\subsection{Forskning på området}
+
+Angreppsmetoder mot och hur användare väljer lösenord och -fraser är ett aktivt 
+forskningsområde.
+Metoderna blir alltmer avancerade och exempelvis undersöker 
+\citet{Bonneau2012lpo} hur lingvistiken påverkar valet av lösenord beståendes 
+av flera ord.
+\citeauthor{Bonneau2012lpo} finner att användarna inte väljer slumpmässiga ord 
+utan föredrar att välja dem anpassade efter naturligt språk.
+Exempelvis XKCD:s ''correct horse battery staple''\footnote{%
+  URL: \protect\url{http://xkcd.com/936/}.
+} föredras framför ''horse correct battery staple'' på grund av att det första 
+alternativet är mer grammatiskt korrekt.
+
+\citet{Kuo2006hso} gjorde en undersökning av hur användare skapar lösenord som 
+är lätta att komma ihåg.
+\citeauthor{Kuo2006hso} undersökte styrkan hos frasbaserade lösenord.
+Det vill säga lösenord som skapas utifrån en mening, exempelvis Googles exempel 
+''To be or not to be, that is the question''\footnote{%
+  URL: \protect\url{http://www.lightbluetouchpaper.org/2011/11/08/want-to-create-a-really-strong-password-dont-ask-google/}.
+} som ger lösenordet ''2bon2btitq''.
+Det visade sig då i undersökningen att denna typ av lösenord är lite säkrare än 
+medellösenordet, men användare väljer fortfarande lösenord som är lätta att 
+gissa.
+
+\citet{Komanduri2011opa} genomförde också en undersökning om lösenordsstyrka 
+och hur lösenordspolicyer påverkar valet av lösenord.
+Dessa använder Shannons entropi \cite{Shannon1948amt} som metrik för 
+lösenordsstyrka.
+Denna metrik är väl anpassad för denna typ av undersökning, den går dock inte 
+att tillämpa utan tillgång till en större samling av valda lösenord.
+De fann att den lösenordspolicy som gav starkast valda lösenord var den enkla 
+policyn att lösenordet ska vara minst 16 tecken långt, inga andra krav.
+Denna policy visade sig även vara den som gav lösenord som var enklast att 
+komma ihåg.
+
+Utöver de ytliga analyserna av läckta lösenordsdatabaser som gjordes av 
+\citet{Cubrilovic2009rhf,Oberheide2010bao,Hunt2011abs,Cluley2012twp} har 
+\citet{Bonneau2012sog} gjort en mer formell och djupgående analys.
+\citeauthor{Bonneau2012sog} har tittat på lösenorden hos nästan 70 miljoner 
+Yahoo!-användare och har då kunnat undersöka skillnader mellan olika 
+demografiska grupper.
+I artikeln utvecklas en metrik för styrkan hos lösenord, en mer formell och 
+ingående än den mycket simpla metrik some ges i \prettyref{def:passwdstrength}.
+
+\citet{Bonneau2012ghs} har skrivit sin avhandling om tillvägagångssätt för att 
+gissa hemligheter valda av människor, där lösenord är en självklar sådan 
+hemlighet.
+I avhandlingen presenteras en matematisk modell för mänskligt val och en metrik 
+för att modellera motståndskraften mot olika gissningsattacker.
+
+
+% XXX write section on better metric for password strength using
+% XXX Shannon entropy
+%\section{En förbättrad metrik för lösenordsstyrka}
+%\dots
+
+
+\printbibliography
+\end{document}
