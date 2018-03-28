@@ -62,9 +62,9 @@ fulfilled the intended learning outcomes given above.
 The assignment consists of two parts.
 The first part concerns the security of various types of passwords, you will 
 first reflect and then break some passwords.
-The second part is about bypassing passwords without breaking them, it covers 
-the social engineering aspects of security and you will construct a social 
-engineering based scenario.
+The second part is about bypassing passwords without breaking them, \ie it 
+covers the social engineering aspects of security and you will construct a 
+social-engineering-based scenario.
 
 \subsection{Introductory reflection}%
 \label{sec:reflection}
@@ -79,22 +79,38 @@ Then continue by answering the following questions:
   \item What happens if the randomly chosen words are not that randomly chosen, 
     what if they are rather a famous quote or similar?
 
+  \item What happens if the \enquote{traditional} password consisting of lower 
+    and upper case letters, digits and special characters, is not randomly 
+    chosen?
+    What if it is based on a word?
+
   \item What is your estimate for password complexity to have a secure password 
     today?
     Where is the limit in number of guesses needed to correctly guess the 
     password?
+
+  \item Does it matter where the password is used?
+    Not for the value of the account that the password protects, but how well 
+    the service might protect the password.
 \end{itemize}
 
 \subsection{Cracking passwords}
 
-On the website
+The papers above used some password-cracking software.
+In addition, on the website
 \begin{center}
   \url{http://sectools.org/tag/crackers/}
 \end{center}
 you can find a list of programs for password cracking.
-The two programs recommended for this assignment are
-\ac{JtR} and Ophcrack.
-However, you are free to use any program to solve this.
+You are free to use any program to solve this.
+
+The Windows hash is an old NTLM hash, which means that it is not 
+salted\footnote{%
+  Consider this when choosing your method for cracking.
+}.
+The UNIX hash is salted and uses the Blowfish (OpenBSD).
+
+\subsubsection{How to obtain the password hashes}
 
 For a UNIX-like operating system the password hashes with corresponding salts 
 are stored in the file \enquote{/etc/master.passwd} on BSD-based systems such 
@@ -115,6 +131,90 @@ You are going to find the passwords for both Windows and UNIX-like systems.
 The hashes are available in Sect.~\ref{sec:hashes}.
 Thus, you do not have to use any program like fgdump or unshadow(8) to extract 
 them.
+
+\subsection{Social engineering}
+
+In this part of the assignment you are going to help the University's security 
+group think about social-engineering-based attack-scenarios.
+Your assignment is to develop a realistic scenario for a social engineering 
+attack, the purpose of which is to use for educating the University staff.
+As inspiration you have the literature given in the theory section above.
+
+Also please note, this is not an encouragement to perform this attack, it is 
+strictly academic.
+You should contribute your scenario by posting it in the forum in the course 
+platform.
+
+
+\section{Examination}%
+\label{sec:exam}
+
+The assignment may be solved in groups of up to two students.
+To get your work examined you should hand in a report (in PDF-format) 
+containing the following:
+\begin{itemize}
+  \item All the passwords for the given hashes.
+    You must also describe how you cracked them and how long it took you.
+
+  \item You should provide your reflections on password strength from above.
+    Then you should relate these to the cracking of the passwords above.
+    How does theory and practice relate?
+
+  \item Your social-engineering-based scenario.
+    Note that this should also be published in the forum in the course platform.
+\end{itemize}
+
+
+\subsubsection*{Acknowledements}
+
+This work was originally based on previous work by Rahim Rahmani and Curt-Olof 
+Klasson.
+It has evolved since then and the only remains is the password hashes for 
+Windows and the general idea of password cracking.
+
+This work is released under the Creative Commons Attribution-ShareAlike 3.0 
+Unported license.
+To view a copy of this license, visit 
+\url{http://creativecommons.org/licenses/by-sa/3.0/}.
+You can find the original source code in URL 
+\url{https://github.com/OpenSecEd/passwd/pwdguess/}.
+
+
+\printbibliography{}
+
+
+\appendix
+\section{The password hashes}%
+\label{sec:hashes}
+
+The password hashes used in this lab are included below.
+You can also find them downloadable from URL
+\url{http://github.com/OpenSecEd/passwd/releases/tag/v1.1/}.
+Note the line numbers and that everything should be on one line.
+
+\verb'win-pwd.txt':
+\lstinputlisting{win-pwd.txt}
+
+\verb'unix-passwd.txt':
+\lstinputlisting{unix-passwd.txt}
+
+
+\section{Password guess generator}%
+\label{sec:pwdstream}
+
+For this lab there is also a password guess generator.
+This can be used with \ac{JtR} to better control what guesses are used while 
+cracking.
+It will output a stream of passwords, one per line, on standard out, hence you 
+can pipe this to \ac{JtR} using the \enquote{--stdin} option.
+
+You can find its source code downloadable from the URL
+\url{https://github.com/OpenSecEd/passwd/releases/download/v1.1/pwdstream.py}.
+
+%\lstinputlisting{pwdstream.py}
+
+
+\section{Instructions for Ophcrack and John the Ripper}
 
 \subsubsection{Ophcrack}
 
@@ -228,82 +328,4 @@ help generate a stream of passwords, see \enquote{./pwdstream.py -h} for
 details.
 
 
-\subsection{Social engineering and \acp{APT}}
 
-In this part of the assignment you are going to help the University's security 
-group think about social-engineering-based attack-scenarios.
-Your assignment is to develop a realistic scenario for a social engineering 
-attack, the purpose of which is to use for educating the University staff.
-As inspiration you have the literature given in the theory section above.
-
-Also please note, this is not an encouragement to perform this attack, it is 
-strictly academic.
-You should contribute your scenario by posting it in the forum in the course 
-platform.
-
-
-\section{Examination}%
-\label{sec:exam}
-
-The assignment may be solved in groups of up to two students.
-To get your work examined you should hand in a report (in PDF-format) 
-containing the following:
-\begin{itemize}
-  \item All the passwords for the given hashes.
-    You must also describe how you cracked them and how long it took you.
-
-  \item You should provide your reflections on password strength from above.
-    Then you should relate these to the cracking of the passwords above.
-    How does theory and practice relate?
-
-  \item Your social engineering based APT-scenario.
-    Note that this should also be published in the forum in the course platform.
-\end{itemize}
-
-
-\subsubsection*{Acknowledements}
-
-This work was originally based on previous work by Rahim Rahmani and Curt-Olof 
-Klasson.
-It has evolved since then and the only remains is the password hashes for 
-Windows and the general idea of password cracking.
-
-This work is released under the Creative Commons Attribution-ShareAlike 3.0 
-Unported license.
-To view a copy of this license, visit 
-\url{http://creativecommons.org/licenses/by-sa/3.0/}.
-You can find the original source code in URL 
-\url{https://github.com/OpenSecEd/passwd/pwdguess/}.
-
-
-\appendix
-\section{The password hashes}%
-\label{sec:hashes}
-
-The password hashes used in this lab are included below.
-You can also find then downloadable from URL
-\url{http://github.com/OpenSecEd/passwd/releases/tag/v1.1/}.
-
-win-pwd.txt:
-\lstinputlisting{win-pwd.txt}
-
-unix-passwd.txt:
-\lstinputlisting{unix-passwd.txt}
-
-
-\section{Password guess generator}%
-\label{sec:pwdstream}
-
-For this lab there is also a password guess generator.
-This can be used with \ac{JtR} to better control what guesses are used while 
-cracking.
-It will output a stream of passwords, one per line, on standard out, hence you 
-can pipe this to \ac{JtR} using the \enquote{--stdin} option.
-
-You can find its source code downloadable from the URL
-\url{https://github.com/OpenSecEd/passwd/releases/download/v1.1/pwdstream.py}.
-
-%\lstinputlisting{pwdstream.py}
-
-
-\printbibliography{}
