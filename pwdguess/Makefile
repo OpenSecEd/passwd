@@ -1,6 +1,6 @@
 # $Id$
 
-FILES=		pwdguess.tex aims.tex literature.tex pwdguess.bib
+FILES=		pwdguess.tex contents.tex aims.tex literature.tex pwdguess.bib
 FILES+= 	unix-passwd.txt win-pwd.txt pwdstream.py sshforce.py
 
 USE_LATEXMK= 	yes

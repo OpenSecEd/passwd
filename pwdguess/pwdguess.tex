@@ -6,8 +6,13 @@
 \usepackage{hyperref}
 \usepackage{color}
 \usepackage{cleveref}
+\usepackage{csquotes}
 \usepackage[natbib,style=alphabetic,maxbibnames=99]{biblatex}
 \addbibresource{pwdguess.bib}
+
+\usepackage[all]{foreign}
+\renewcommand{\foreignfullfont}{}
+\renewcommand{\foreignabbrfont}{}
 
 \usepackage{listings}
 \lstset{%
@@ -25,5 +30,5 @@
 \newacro{JtR}{John the Ripper}
 
 \begin{document}
-\input{pwdguess-contents.tex}
+\input{contents.tex}
 \end{document}
