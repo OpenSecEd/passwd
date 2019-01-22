@@ -9,7 +9,7 @@ USE_BIBLATEX= 	yes
 .PHONY: all
 all: pwdpolicies.pdf
 
-pwdpolicies.pdf: ${FILES} llncs
+pwdpolicies.pdf: ${FILES}
 
 
 ### INCLUDES ###

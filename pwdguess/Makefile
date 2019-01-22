@@ -9,7 +9,7 @@ USE_BIBLATEX= 	yes
 .PHONY: all
 all: pwdguess.pdf
 
-pwdguess.pdf: ${FILES} llncs
+pwdguess.pdf: ${FILES}
 
 
 ### INCLUDES ###
