@@ -42,12 +42,13 @@ This is the goal of this assignment.
 \section{Assignment}%
 \label{sec:tasks}
 
-The seminar is divided into several parts.
-In the first we will evaluate how password-composition policies affects users.
-In the second part, we will evaluate how users cope with passwords and evaluate 
-the usability of password managers.
+The seminar is divided into two seminar sessions.
+In the first (\cref{password-policies}), we will evaluate how 
+password-composition policies affects users.
+In the second (\cref{password-managers-tools}), we will evaluate how users cope 
+with passwords and evaluate the usability of password managers.
 
-You will read research papers throughout these parts.
+You will read research papers for these sessions.
 While reading, write down your thoughts.
 Let these questions guide your reading:
 \begin{itemize}
@@ -56,7 +57,14 @@ Let these questions guide your reading:
     \Ie what is the research method?
 \end{itemize}
 
-\subsection{Password-composition policies}
+Discuss your thoughts in the working groups before each seminar.
+The groups at the seminars will be randomly chosen to maximize exchanges of 
+ideas.
+
+\subsection{Password-composition policies}%
+\label{password-policies}
+
+\paragraph{Before the seminar session}
 
 First you must read the chapter \enquote{Usability and 
   Psychology}~\cite[Ch.~2]{Anderson2008sea}.
@@ -72,79 +80,123 @@ and, finally,
 In these papers the authors studied how password-composition policies affects 
 the interplay between password security and usability and how users cope with 
 passwords.
+Focus on these questions:
+\begin{itemize}
+  \item What are the main results of the research paper?
+  \item How did they conclude them?
+    \Ie what is the research method?
+\end{itemize}
 
-After reading and reflection, think about the following questions:
+After reading, reflect on what you have read, think about the following 
+questions:
 \begin{itemize}
   \item How do these results compare to your experience of what is used in 
     practice?
-  \item What is your strategy for remembering passwords?
-  \item How do you react to different password policies?
-  \item What would be a good password-composition policy?
+  \item How are your password strategies compared to those in the papers?
+  \item What would be a good password policy?
     Why would that be good?
-  \item How much information do you think a password policy reveals about the 
-    passwords?
-    Is there any way we can estimate that?
   \item Is it fine to write down passwords or not?
-  \item In the situation where you have forgotten you password,
-  	what kind of password recovery schemes have you encountered?
-  \item What is your reaction towards the different password recovery schemes?  
-  \item How should password recovery be dealt with in a secure way?
+    It depends?
+  \item How to recover from failed states; \eg forgotten passwords, lost keys?
   \item What problems do you perceive with authentication of users in general?
   \item In which situations are passwords suitable and in which are they not?
 \end{itemize}
-Finally, look at the University's password-composition policy, what are the 
-strengths and weaknesses of this policy?
 
-During the seminar we will first discuss the papers and your reflections from 
-reading them.
-After that we will work in groups of 3--4 students.
-We will first discuss how we can estimate how much a password policy reveals 
-about the passwords, \ie how the password policy can make guessing easier.
-Then every group will design a password-composition policy, drawing from both 
-the papers and the discussions.
+Discuss the papers and your reflections in the group.
+For the papers, try to answer: what questions does each paper try to answer, 
+how do they do this?
+
+\paragraph{During the seminar session}
+
+During the seminar we will first let the groups summarize their discussions 
+from before the seminar: the papers and the reflections.
+(We will take 30 minutes for these summaries.)
+
+After a short break, each group will design a password policy for one of the 
+following:
+\begin{itemize}
+  \item BankID and Mobile BankID,
+  \item a web-mail account,
+  \item a company login account,
+  \item an encrypted hard-drive;
+\end{itemize}
+drawing from both the papers and the discussions.
+(We allocate 20 minutes for this.)
 Finally, every group will present their policy and analysis, then we will 
 evaluate it together.
+(We spend the last 20 minutes on this.)
 
-\subsection{Password managers and other tools}
+\subsection{Password managers and other tools}%
+\label{password-managers-tools}
+
+\paragraph{Before the seminar session}
 
 Read the paper 
 \citetitle{UsabilityEvaluationOfPasswordManagers}~\cite{UsabilityEvaluationOfPasswordManagers}.
 In this paper the authors examines the usability of three password managers and 
 compares them.
+Discuss the paper in the group: what questions does the paper answer, how do 
+they do this?
 
-You should then look a password manager (you choose which) and at the following 
-three authentication mechanisms:
-Mobile BankID\footnote{%
-  URL: \url{https://www.bankid.com}.
-},
-WebAuthn\footnote{%
-  URL: \url{https://webauthn.io}.
-  Note that you might have to use a smartphone as those have more hardware 
-  support than most laptops.
-} and
-Identity Mixer\footnote{%
-  URL: \url{https://idemixdemo.mybluemix.net/}.
-}.
+The group should then evaluate one password manager.
+Discuss in the group what interesting factors to look at.
+There are numerous password managers, some of the most popular are \eg:
+\begin{itemize}
+  \item KeePass\{X,XC\},
+  \item LastPass,
+  \item 1Password,
+  \item LessPass,
+  \item BitWarden,
+  \item PassBolt,
+  \item Password Safe.
+\end{itemize}
+(Remember, the group only needs to evaluate one.)
+
+Then the group should also evaluate the following authentication mechanisms:
+\begin{itemize}
+  \item (Mobile) BankID\footnote{%
+      URL: \url{https://www.bankid.com}.
+    },
+  \item WebAuthn\footnote{%
+      URL: \url{https://webauthn.io}.
+      Note that you might have to use a smartphone as those have more hardware 
+      support than most laptops.
+    } and
+  \item Identity Mixer\footnote{%
+      URL: \url{https://idemixdemo.mybluemix.net/}.
+    }.
+\end{itemize}
 
 After this, think of a few services, tools or devices that you frequently use 
 and where you must authenticate.
 Think about the authentication in those situations: are they properly designed, 
 how would you like to change them and why?
 
+\paragraph{During the seminar session}
+
 During the second part of the seminar we will discuss your experiences, 
 thoughts and suggestions for improvements.
-First we will discuss your experience of the password managers and how those 
-relate to the results of the 
+We will do this in groups (randomly chosen to spread the ideas).
+
+First, we will discuss (in groups) your experience of the password managers and 
+how those relate to the results of the 
 paper~\cite{UsabilityEvaluationOfPasswordManagers}.
 How did you \enquote{evaluate} the password manager?
+What were your conclusions?
+(The groups will have 30 minutes to discuss this.)
 
-Second, we will discuss the advantages and disadvantages of the other 
-authentication mechanisms that you tried.
-How did you \enquote{evaluate}, what did you do, how was that experience?
+We will summarize the discussions and, particularly, differences between groups 
+in full class.
+(We will spend 15 minutes on this.)
 
-Third, we will work in groups and each group will focus on a service that they 
-would like to improve.
-After the group is done, it will present its results to the others.
+After a short break, we will discuss the advantages and disadvantages of the 
+other authentication mechanisms that you tried.
+How did you \enquote{evaluate} them, what did you do, how was that experience?
+What service did you want to improve, how and why?
+(The groups will have 30 minutes for discussions.)
+Then each group will summarize the most important parts of their discussion in 
+class: any changes of mind, diverging opinions?
+(We allocate 15 minutes for this.)
 
 
 \section{Examination}%
