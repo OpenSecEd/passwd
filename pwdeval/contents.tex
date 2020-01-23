@@ -44,7 +44,7 @@ This is the goal of this assignment.
 
 The seminar is divided into two seminar sessions.
 In the first (\cref{password-policies}), we will evaluate how 
-password-composition policies affects users.
+password-composition policies, both their security and their usability.
 In the second (\cref{password-managers-tools}), we will evaluate how users cope 
 with passwords and evaluate the usability of password managers.
 
@@ -70,6 +70,22 @@ First you must read the chapter \enquote{Usability and
   Psychology}~\cite[Ch.~2]{Anderson2008sea}.
 Further, you need a basic understanding of information theory, for this you are 
 recommended to read \citetitle{Ueltschi2013se}~\cite{Ueltschi2013se}.
+
+Start by estimating the strength of the following two password-composition 
+policies:
+\begin{itemize}
+  \item At least eight characters chosen uniformly randomly.
+    The characters include lower and upper case, digits and special characters.
+
+  \item Four words chosen uniformly randomly.
+    Say the words are Swedish, then there are approximately 125\,000 words in 
+    SAOL (the common dictionary of Swedish).
+
+  \item Add to the first policy the requirement of at least one character from 
+    each character group.
+\end{itemize}
+How strong are they?
+Order them according to their strengths.
 
 Read the papers
 \citetitle{OfPasswordsAndPeople}~\cite{OfPasswordsAndPeople}, 
@@ -102,14 +118,27 @@ questions:
   \item In which situations are passwords suitable and in which are they not?
 \end{itemize}
 
-Discuss the papers and your reflections in the group.
+Crack the following three passwords available in the two files:
+\begin{center}
+  \url{https://github.com/OpenSecEd/passwd/releases/download/v1.1/unix-passwd.txt}
+\end{center}
+and
+\begin{center}
+  \url{https://github.com/OpenSecEd/passwd/releases/download/v1.1/win-pwd.txt}
+\end{center}
+There are instructions for how to get going with this in \cref{cracking}.
+(You should work in your groups and make this as fast as possible.)
+
+Discuss the papers and your reflections in the group, how hard are passwords to 
+crack?
 For the papers, try to answer: what questions does each paper try to answer, 
 how do they do this?
 
 \paragraph{During the seminar session}
 
 During the seminar we will first let the groups summarize their discussions 
-from before the seminar: the papers and the reflections.
+from before the seminar: the papers, the reflections and experience from 
+password cracking.
 (We will take 30 minutes for these summaries.)
 
 After a short break, each group will design a password policy for one of the 
@@ -207,3 +236,7 @@ throughout the activities.
 
 
 \printbibliography
+
+
+\appendix
+\input{guessing.tex}
