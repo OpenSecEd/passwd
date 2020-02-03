@@ -53,7 +53,7 @@ To use it, create a directory on your computer where you have all the files you
 would like to have available.
 Then start the container from that directory.
 \begin{verbatim}
-docker run -it -v $(pwd):/pwdeval pwdeval
+docker run -it -v $(pwd):/pwdeval dbosk/pwdeval
 \end{verbatim}
 This will map the current directory to the working directory (\verb'/pwdeval') 
 inside the container.
