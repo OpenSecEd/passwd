@@ -44,11 +44,6 @@ extract them}.
 
 If you have Docker on your computer you can use the container provided here.
 It has John the Ripper and Ophcrack preinstalled.
-To download the image, run
-\begin{verbatim}
-docker pull dbosk/pwdeval
-\end{verbatim}
-
 To use it, create a directory on your computer where you have all the files you 
 would like to have available.
 Then start the container from that directory.
@@ -57,6 +52,8 @@ docker run -it -v $(pwd):/pwdeval dbosk/pwdeval
 \end{verbatim}
 This will map the current directory to the working directory (\verb'/pwdeval') 
 inside the container.
+The first time you run it, it will automatically download the image from Docker 
+Hub.
 
 
 \subsection{Instructions for Ophcrack and John the Ripper}
